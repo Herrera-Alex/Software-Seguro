@@ -10,7 +10,7 @@ https://www.spotify.com
 
 https://www.youtube.com
 
-como podemos observar el subdominio de esta aplicacion web (Whatsapp) son **"web"**:
+como podemos observar el subdominio de esta aplicacion web (Whatsapp) es **"web"**:
 
 https://web.whatsapp.com
 
