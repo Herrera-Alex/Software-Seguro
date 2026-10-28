@@ -16,5 +16,5 @@ siguiente que tenemos que hacer es modificar el endpoint en el repeater para pod
 
 Concluido esto volvemos en la pestaña del proxy y seleccionamos el endpoint que mandamos al repeater y lo mandamos para que carge la pagina con los datos modificados y con eso concluimos el laboratorio.
 
-!\[Solución del laboratorio](./repeater3.png)
+!\[Solución del laboratorio](./repeater4.png)
 
