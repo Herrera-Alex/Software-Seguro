@@ -5,6 +5,7 @@
 Captura de pantalla de la correcta utilización de Nmap:
 
 Desde la plataforma Bugcrowd, elegí el programa o sitio web **[bitso.com]** para realizar este trabajo. Como se observa, usamos el comando **`[nmap -sV bitso.com]`**, con el cual ejecutamos el análisis y obtenemos los datos que necesitamos revisar.
+![Solución del laboratorio usando el comando nmap](./nmap1.png)
 
 Los puertos identificados fueron:
 
