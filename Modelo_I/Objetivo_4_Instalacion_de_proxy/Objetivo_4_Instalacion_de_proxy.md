@@ -11,6 +11,9 @@ Durante la práctica, se evidenció que Burp Suite fue capaz de interceptar las 
 El proxy funciona como un intermediario entre el cliente y el servidor de destino. En este caso, la herramienta de análisis interceptó las solicitudes, lo que permitió ver cómo el tráfico era redirigido y revisado antes de continuar su camino.
 
 > Esto confirma que el proxy puede inspeccionar el tráfico en tránsito, especialmente cuando no existe cifrado de extremo a extremo.
+![pestaña de la activacion del proxy en el navegador de preferencia](foxyproxy.png) 
+![encendido del burp para el trafico de datos](burp1.png)
+![intercepcion del trafico](burp2.png) 
 
 ## 3. ¿Qué es un proxy?
 
