@@ -1,18 +1,12 @@
 **Objetivo 11: Ejecución del Laboratorios**
 
 **Laboratorio Apagar la IA:**
+
 Comenzamos abriendo el laboratorio y su enunciado el cual lo leeremos para comprender que es lo que nos pide. Entramos a la pestaña del laboratorio a resolver y vemos que nos da 2 hash md5 que si lo apretamos nos envía a una pagina donde nos hace ver los códigos de numero dentro de ellas lo cual comprendemos que debemos descifrar de que valor numérico son esos hash md5. el primero **0e1422ea79781ee046484893ce0010c4** tiene el valor numérico 9912 y el segundo **0602940f23884f782058efac46f64b0f** tiene el valor numérico 9995, en el cual deducimos que debemos hacer una búsqueda del rango 9900 al 13000 para buscar ese numero de 16 dígitos dentro de algunos de esas paginas con dichos hash md5.
 
 Primero abrimos el burpsuite y buscamos el endpoint de los códigos y los mandamos al intruder en el cual seleccionamos el hash md5 del **GET** y lo transformamos en variable con la función **Playloads** el cual seleccionamos en la opción de lista simple y la configuración seleccionamos el archivo de texto con los hashes de los números del rango 9900 al 13000, que lo convertimos usando el comando en phyton el cual nos genera la lista de los hashes a utilizar:
 
-import hashlib
-
-inicio = 9900
-fin = 13000
-
-for num in range(inicio, fin + 1):
-   hash_md5 = hashlib.md5(str(num).encode("utf-8")).hexdigest()
-   print(hash_md5)
+![Hash MD5](./hashmd5.png)
 
 Con todo eso iniciamos el ataque y podemos ver que funciona, pero no podemos encontrar la pagina que tiene los 16 dígitos en su interior lo cual usamos otra de las herramientas del intruder en la parte de sentting nos vamos a la parte **de GREP-Extract** y apretamos añadir para que nos abra una pestaña el cual debemos configurar lo que deseamos buscar en la parte **de Extract from regex group** seleccionamos y tenemos que escribir el código que deseemos buscar en nuestro caso seria **(<li>\d{16}</li>)** lo que dice es que nos devolverá el valor encerrado que buscamos que contenga 16 dígitos y volvemos a comenzar el ataque y vemos que se nos agrega una nueva pestaña donde se encuentra el código de búsqueda que colocamos, cuando termine lo seleccionamos para que lo ordenemos y nos entregue el endpoint que contiene dicho valor el cual es **5524663362514956** y con ese valor tenemos que ir a un convertidor de hash md5 de cualquier pagina web para que nos convierta el valor en el resultado que necesitamos para completar el laboratorio el cual es **a8e0e8ff02dde0f62fdf4de5142d7de0.**
 
@@ -23,26 +17,8 @@ Para resolver este laboratorio necesitaremos una concentración total el cual en
 
 Con esto ya resuelto podemos realizar el laboratorio en mi caso use la ayuda de la IA para que me cree un código el cual me devuelva las 5^10 combinaciones en un archivo de texto el cual es:
 
-def generar_codigo():
-    return "".join(str(valores[l]) for l in patron)
-
-def avanzar():
-    for letra in reversed(letras):
-        valores[letra] += 1
-        if valores[letra] <= 9:
-            break
-        valores[letra] = 0
-
-with open("D:/mejorsecreto.txt", "w", encoding="utf-8") as archivo:
-
-    for i in range(10**5):
-        codigo = generar_codigo()
-        archivo.write(codigo + "\n")
-        avanzar()
-
-print("¡Proceso terminado!")
-print("Se generaron 100.000 códigos.")
-print("Archivo creado: mejorsecreto.txt")
+![Lista de convinaciones1](./convinaciones1.png)
+![Lista de conbinaciones2](./convinaciones2.png)
 
 Con esto creamos una carpeta en el cual pondremos el archivo **secreto.zip** y el archivo
 
@@ -50,41 +26,8 @@ mejorsecreto.txt que contiene todas las líneas de comando que tendremos que pro
 
 ahora descargamos **pyzipper** que es una herramienta que nos ayudara a realizar de manera autónoma la fuerza bruta al archivo **secreto.zip,** con esto ya podemos pasar al código que nos ayudara a resolver este laboratorio:
 
-import pyzipper
-import time
-import os
-ZIP = r"D:\Laboratorio\secreto.zip"
-DICCIONARIO = r"D:\Laboratorio\mejorsecreto.txt"
-inicio = time.time()
-intentos = 0
-encontrada = False
-
-with open(DICCIONARIO, "r", encoding="utf-8") as archivo:
-   with pyzipper.AESZipFile(ZIP) as z:
-       for linea in archivo:
-            password = linea.strip().encode("utf-8")
-            if not password:
-               continue
-            intentos += 1 
-            try:
-               contenido = z.read("secreto.txt", pwd=password)
-               print("\nCONTRASEÑA ENCONTRADA:", password.decode())
-               encontrada = True
-               break
-            except (RuntimeError, ValueError):
-               pass
-            if intentos % 1000 == 0:
-               tiempo = time.time() - inicio
-               velocidad = intentos / tiempo
-               print(
-                   f"Intentos: {intentos} | "
-                   f"Velocidad: {velocidad:.2f}/seg"
-                )
-tiempo = time.time() - inicio
-print("\nProceso terminado.")
-print("Intentos:", intentos)
-print("Tiempo:", round(tiempo, 2), "segundos")
-print("Resultado:", "Encontrada" if encontrada else "No encontrada")
+![cifrado del archivo zip1](./zip1.png)
+![cifrado del archivo zip1](./zip2.png)
 
 esperamos que resuelva y vemos que nos encuentra la contraseña en el intento 54794 y la cual es: **547795999937** y con eso abrimos el archivo **secreto.zip** y nos entrega el hash del laboratorio.
 
