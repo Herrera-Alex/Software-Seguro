@@ -16,11 +16,9 @@ Si una cookie de sesión carece de la bandera Secure, el navegador permite que s
 
 A continuación tenemos 3 sitios web que analize y puse aprueba sus banderas como el HttpOnly no las tienen habilitadas por el cual pude ver mis cookies y la de Secure si están bien:
 
-Foto 1
+![Web](./Software.png)
 
-Foto 2
+![Web](./UTN.png)
 
-Foto 3 
-
-&#x20;
+![Web](./Youtube.png) 
 
