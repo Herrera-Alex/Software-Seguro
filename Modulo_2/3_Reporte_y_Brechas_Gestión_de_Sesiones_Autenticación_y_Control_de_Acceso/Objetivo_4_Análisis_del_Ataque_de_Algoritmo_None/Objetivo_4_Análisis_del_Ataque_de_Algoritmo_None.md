@@ -1,0 +1,1 @@
+Un backend vulnerable permite falsificar identidades sin conocer la clave secreta porque delega en el cliente la elección del algoritmo de verificación: al recibir "alg": "none", el servidor desactiva la comprobación de firma y confía en el contenido del Payload sin validar su integridad.
